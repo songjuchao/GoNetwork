@@ -45,12 +45,12 @@ func echo(tcpConn *net.TCPConn) {
 		if err != nil {
 			log.Println(err)
 		}
-		log.Println("read size %d", size)
+		log.Printf("read size %d\n", size)
 
 		size, err = tcpConn.Write(buffer[:size])
 		if err != nil {
 			log.Println(err)
 		}
-		log.Println("write size %d", size)
+		log.Printf("write size %d\n", size)
 	}
 }
