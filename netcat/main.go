@@ -88,7 +88,7 @@ func netcat(conn *net.TCPConn) {
 		}
 
 		if size != 0 {
-			os.Stdout.Write(buffer)
+			os.Stdout.Write(buffer[:size])
 		} else {
 			break
 		}
