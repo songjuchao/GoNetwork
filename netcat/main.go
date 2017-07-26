@@ -95,5 +95,6 @@ func netcat(conn *net.TCPConn) {
 	}
 
 	// 从conn读数据返回0 没有数据可读 直接关闭conn
+	// FIXME: should be CloseRead()?
 	conn.Close()
 }
