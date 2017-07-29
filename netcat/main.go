@@ -60,6 +60,8 @@ func main() {
 }
 
 func netcat(conn *net.TCPConn) {
+	// done := make(chan struct{})
+
 	// read from stdin, write to socket
 	go func() {
 		buffer := make([]byte, 4096)
@@ -78,6 +80,7 @@ func netcat(conn *net.TCPConn) {
 
 		// 从标准输入读数据返回0 没有数据可写 关闭连接的写入端 保证已写如的数据仍可读
 		conn.CloseWrite()
+		// done <- struct{}{}
 	}()
 
 	buffer := make([]byte, 4096)
@@ -97,4 +100,5 @@ func netcat(conn *net.TCPConn) {
 	// 从conn读数据返回0 没有数据可读 直接关闭conn
 	// FIXME: should be CloseRead()?
 	conn.Close()
+	// <-done
 }
